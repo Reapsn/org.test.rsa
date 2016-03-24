@@ -23,4 +23,12 @@ public class KeyPair {
 		return this.publicKey;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("publicKey:\n").append(this.publicKey.toString()).append("\n");
+		buffer.append("privateKey:\n").append(this.privateKey.toString());
+		return buffer.toString();
+	}
+
 }

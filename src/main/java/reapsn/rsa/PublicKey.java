@@ -24,4 +24,12 @@ public class PublicKey {
 		return this.n;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("e=").append(this.e).append(",");
+		buffer.append("n=").append(this.n);
+		return buffer.toString();
+	}
+
 }

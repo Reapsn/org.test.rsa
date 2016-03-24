@@ -89,7 +89,7 @@ public class PrimeNumberUtil {
 		if (lowerLimit < 2) {
 			lowerLimit = 2;
 		}
-		List<Integer> primeNumbers = new ArrayList<>();
+		List<Integer> primeNumbers = new ArrayList<Integer>();
 		for (int i = lowerLimit; i <= upperLimit; i++) {
 			if (isPrimeNumber(i)) {
 				primeNumbers.add(i);

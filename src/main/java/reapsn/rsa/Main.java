@@ -1,6 +1,7 @@
 package reapsn.rsa;
 
-import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @author Reapsn
@@ -9,16 +10,41 @@ import java.math.BigInteger;
 public class Main {
 
 	public static void main(String[] args) {
+		genKeyTest();
+		cipherTest();
+	}
 
-		KeyPair keyPair = KeyFactory.genearateKeyPair();
+	public static void cipherTest() {
+		KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", 16);
 
-		String plainText = "abcd";
+		Scanner scanner = new Scanner(System.in);
 
-		BigInteger[] cipherData = RSACipher.encode(keyPair.getPublicKey(),
-				ByteUtil.toBigIntArray(plainText.getBytes()));
-		BigInteger[] plainData = RSACipher.decode(keyPair.getPrivateKey(), cipherData);
+		System.out.println("请输入明文：");
 
-		System.out.println(new String(ByteUtil.toByteArray(plainData)));
+		String plainText = scanner.nextLine();
+
+		int[] cipherData = RSACipher.encode(keyPair.getPublicKey(), plainText);
+
+		System.out.println("加密后的密文：");
+
+		System.out.println(Arrays.toString(cipherData));
+
+		String plainText2 = RSACipher.decode(keyPair.getPrivateKey(), cipherData);
+
+		System.out.println("解密后的明文：");
+
+		System.out.println(plainText2);
+	}
+
+	public static void genKeyTest() {
+		for (int i = 0; i < 20; i++) {
+
+			System.out.println("Keypair " + (i + 1));
+
+			KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", 16);
+
+			System.out.println(keyPair.toString() + "\n");
+		}
 	}
 
 }

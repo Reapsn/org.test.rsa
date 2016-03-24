@@ -47,4 +47,16 @@ public class PrivateKey {
 		return this.q;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("d=").append(this.d).append(",");
+		buffer.append("e=").append(this.e).append(",");
+		buffer.append("n=").append(this.n).append(",");
+		buffer.append("ola_n=").append(this.ola_n).append(",");
+		buffer.append("p=").append(this.p).append(",");
+		buffer.append("q=").append(this.q);
+		return buffer.toString();
+	}
+
 }
