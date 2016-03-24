@@ -1,7 +1,5 @@
 package reapsn.rsa;
 
-import java.math.BigInteger;
-
 import org.apache.commons.codec.binary.Base64;
 
 /**
@@ -16,9 +14,7 @@ public class RSACipher {
 		}
 		int[] plainData = new int[cipherData.length];
 		for (int i = 0; i < cipherData.length; i++) {
-			BigInteger element = BigInteger.valueOf(cipherData[i]);
-			BigInteger pData = element.pow(privateKey.getD()).mod(BigInteger.valueOf(privateKey.getN()));
-			plainData[i] = pData.intValue();
+			plainData[i] = (int) MontgomeryUtil.PowMod(cipherData[i], privateKey.getD(), privateKey.getN());
 		}
 		String plainText = new String(Base64.decodeBase64(ByteUtil.toByteArray(plainData)));
 		return plainText;
@@ -31,9 +27,7 @@ public class RSACipher {
 		int[] plainData = ByteUtil.toBigIntArray(Base64.encodeBase64(plainText.getBytes()));
 		int[] cipherData = new int[plainData.length];
 		for (int i = 0; i < plainData.length; i++) {
-			BigInteger element = BigInteger.valueOf(plainData[i]);
-			BigInteger cData = element.pow(publicKey.getE()).mod(BigInteger.valueOf(publicKey.getN()));
-			cipherData[i] = cData.intValue();
+			cipherData[i] = (int) MontgomeryUtil.PowMod(plainData[i], publicKey.getE(), publicKey.getN());
 		}
 		return cipherData;
 	}

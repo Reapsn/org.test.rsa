@@ -10,12 +10,12 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		genKeyTest();
-		cipherTest();
+		genKeyTest(30);
+		cipherTest(30);
 	}
 
-	public static void cipherTest() {
-		KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", 16);
+	public static void cipherTest(int keyLength) {
+		KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", keyLength);
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -36,12 +36,12 @@ public class Main {
 		System.out.println(plainText2);
 	}
 
-	public static void genKeyTest() {
+	public static void genKeyTest(int keyLength) {
 		for (int i = 0; i < 20; i++) {
 
 			System.out.println("Keypair " + (i + 1));
 
-			KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", 16);
+			KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", keyLength);
 
 			System.out.println(keyPair.toString() + "\n");
 		}
