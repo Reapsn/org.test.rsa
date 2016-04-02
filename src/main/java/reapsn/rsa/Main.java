@@ -9,11 +9,6 @@ import java.util.Scanner;
  */
 public class Main {
 
-	public static void main(String[] args) {
-		genKeyTest(30);
-		cipherTest(30);
-	}
-
 	public static void cipherTest(int keyLength) {
 		KeyPair keyPair = KeyFactory.genearateKeyPair("RSA", keyLength);
 
@@ -22,6 +17,7 @@ public class Main {
 		System.out.println("ÇëÊäÈëÃ÷ÎÄ£º");
 
 		String plainText = scanner.nextLine();
+		scanner.close();
 
 		int[] cipherData = RSACipher.encode(keyPair.getPublicKey(), plainText);
 
@@ -45,6 +41,11 @@ public class Main {
 
 			System.out.println(keyPair.toString() + "\n");
 		}
+	}
+
+	public static void main(String[] args) {
+		genKeyTest(30);
+		cipherTest(30);
 	}
 
 }
